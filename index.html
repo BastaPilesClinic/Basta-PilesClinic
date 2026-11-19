@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basta Clinic">
+    <title>Basta Piles Clinic | Permanent Ayurvedic Relief</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FDF5E6',
+                        maroon: {
+                            DEFAULT: '#800000',
+                            dark: '#5C0000',
+                            light: '#A31616'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            dark: '#B59226',
+                            light: '#E8CC6B'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #FDF5E6;
+            color: #4A0404;
+            font-family: 'Poppins', sans-serif;
+        }
+        .maroon-shadow {
+            box-shadow: 0 14px 30px -8px rgba(128, 0, 0, 0.26);
+        }
+        .chat-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(128, 0, 0, 0.25);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-cream text-maroon antialiased overflow-x-hidden selection:bg-maroon selection:text-cream">
+
+    <!-- Top Clinic Status Banner -->
+    <div class="bg-maroon text-cream text-[11px] sm:text-sm py-2 px-3 sm:px-4 border-b border-gold/40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5 min-w-0">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span class="font-medium truncate">Hours: <strong class="text-gold">8 AM–2 PM &amp; 4–8 PM</strong> <span class="hidden sm:inline">(Break: 2–4 PM)</span></span>
+            </div>
+            <div class="flex items-center gap-2.5 sm:gap-4 shrink-0">
+                <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition hidden md:flex items-center gap-1">
+                    <i class="fa-solid fa-location-dot text-gold"></i>
+                    <span>19, Hospital Road, Sadanandapur, Basta, Odisha</span>
+                </a>
+                <button type="button" onclick="openMyBookingsModal()" class="min-h-[32px] bg-gold/20 hover:bg-gold hover:text-maroon text-gold px-2.5 py-1 rounded-full font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>My Requests (<span id="top-pass-count">0</span>)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Header Navigation -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-maroon/10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center shadow-md border border-gold group-hover:scale-105 transition shrink-0">
+                    <i class="fa-solid fa-leaf text-base sm:text-xl"></i>
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-base sm:text-xl font-extrabold text-maroon tracking-tight leading-none truncate">Basta Piles Clinic</h1>
+                    <p class="text-[10px] sm:text-xs font-medium text-maroon/70 mt-0.5 truncate">Permanent Ayurvedic Relief</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-maroon/80">
+                <a href="#booking" class="hover:text-maroon transition">Book Slot</a>
+                <a href="#treatments" class="hover:text-maroon transition">Treatments</a>
+                <a href="#symptom-guide" class="hover:text-maroon transition">Symptom Check</a>
+                <a href="#about" class="hover:text-maroon transition">Mr. S. Biswal</a>
+                <a href="#location" class="hover:text-maroon transition">Visit Us</a>
+            </nav>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <button type="button" id="installAppBtn" onclick="triggerOneTapInstall()" class="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-600/30 bg-emerald-50 text-emerald-800 text-xs sm:text-sm font-bold hover:bg-emerald-600 hover:text-white transition shadow-sm" title="1-Tap Install App" aria-label="1-Tap Install App">
+                    <i class="fa-solid fa-download text-sm"></i>
+                    <span class="hidden sm:inline">1-Tap Install</span>
+                </button>
+                <button type="button" onclick="toggleAssistant(true)" class="hidden lg:inline-flex min-h-[44px] items-center gap-2 px-3.5 py-2 rounded-xl border border-maroon/20 bg-white text-maroon text-xs sm:text-sm font-semibold hover:border-gold hover:bg-gold/10 transition shadow-sm">
+                    <i class="fa-solid fa-robot text-gold-dark"></i>
+                    <span>Ask Assistant</span>
+                </button>
+                <a href="#booking" class="min-h-[44px] inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-maroon text-cream text-xs sm:text-sm font-semibold hover:bg-maroon-dark transition shadow-md border border-gold/40">
+                    <i class="fa-regular fa-calendar-check text-gold"></i>
+                    <span>Book Slot</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-8 sm:py-16 lg:py-20 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
+                <!-- Left Copy -->
+                <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-maroon/10 border border-gold/60 text-maroon text-[11px] sm:text-sm font-semibold">
+                        <i class="fa-solid fa-seedling text-maroon"></i>
+                        <span>100% Ayurvedic &amp; Non-Surgical Proctology</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-maroon leading-[1.18]">
+                        Permanent Relief from Piles—<span class="text-gold-dark underline decoration-gold/60 underline-offset-4">Without Surgery.</span>
+                    </h2>
+
+                    <p class="text-sm sm:text-base lg:text-lg text-maroon/80 max-w-2xl leading-relaxed">
+                        Walk in with pain, walk out with peace. Trusted care led by <strong class="text-maroon">Mr. S. Biswal</strong> with 15 years of dedicated Ayurvedic expertise in Basta, Odisha.
+                    </p>
+
+                    <!-- Primary CTAs -->
+                    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+                        <a href="#booking" class="min-h-[48px] justify-center inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-maroon text-cream font-bold text-sm sm:text-base hover:bg-maroon-dark transition maroon-shadow border border-gold">
+                            <i class="fa-solid fa-calendar-day text-gold"></i>
+                            <span>Select Slot &amp; Book</span>
+                        </a>
+                        <button type="button" onclick="toggleAssistant(true, 'Check Today\'s Open Slots')" class="min-h-[48px] justify-center inline-flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-white text-maroon font-bold text-sm sm:text-base hover:bg-gold/10 transition border-2 border-maroon/15 shadow-sm">
+                            <i class="fa-solid fa-comment-medical text-maroon"></i>
+                            <span>Ask Clinic Assistant</span>
+                        </button>
+                    </div>
+
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-3">
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-maroon/10 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">No Surgery</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">No cuts, stitches, or scars</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gold/20 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">Money-Back</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">Guaranteed treatment confidence</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-maroon/10 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">7-Day Support</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">8 AM–2 PM &amp; 4 PM–8 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Live Clinic Status Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl p-5 sm:p-7 border-2 border-gold shadow-xl relative">
+                        <div class="flex items-center justify-between gap-2 border-b border-maroon/10 pb-3.5 mb-3.5">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-gold-dark">Live Clinic Desk</span>
+                                <h3 class="text-base sm:text-xl font-bold text-maroon mt-0.5">Today's Availability</h3>
+                            </div>
+                            <span id="hero-open-badge" class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] sm:text-xs font-bold shrink-0">
+                                20 Slots Open
+                            </span>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-maroon/75 mb-3.5">
+                            Tap a quick window below to jump straight to booking with <strong>Mr. S. Biswal</strong>:
+                        </p>
+
+                        <div id="hero-quick-slots" class="grid grid-cols-2 gap-2.5 mb-4">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="bg-cream rounded-2xl p-3.5 border border-maroon/10 flex items-center justify-between gap-3">
+                            <div class="text-xs text-maroon/80">
+                                <div class="font-bold text-maroon">Need direct help?</div>
+                                <div>Instant WhatsApp desk</div>
+                            </div>
+                            <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20would%20like%20to%20enquire%20about%20a%20visit." target="_blank" rel="noopener noreferrer" class="min-h-[42px] px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 transition shrink-0 shadow">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prominent Slot Selection Window -->
+    <section id="booking" class="py-10 sm:py-16 bg-white/70 border-b border-maroon/10 scroll-mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mb-6 sm:mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Direct WhatsApp Slot Request</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-maroon mt-1">Select Your Consultation Slot</h2>
+                <p class="text-xs sm:text-sm text-maroon/75 mt-2 leading-relaxed">
+                    Morning (<strong>8:00 AM – 2:00 PM</strong>) and Evening (<strong>4:00 PM – 8:00 PM</strong>) slots are open to request. Afternoon break (<strong>2:00 PM – 4:00 PM</strong>) is closed daily. Confirmed once <strong>Mr. S. Biswal / Basta Piles Clinic</strong> replies on WhatsApp.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                <!-- Left: Date & Slot Selection Window -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-7 border-2 border-gold/60 shadow-md space-y-5 sm:space-y-6">
+                    <!-- Date Selector (Horizontal Snap Scroll on Mobile) -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-maroon/75">1. Choose Visit Date</label>
+                            <span class="text-[11px] text-maroon/55 sm:hidden">Swipe &rarr;</span>
+                        </div>
+                        <div id="date-selector" class="flex sm:grid sm:grid-cols-7 gap-2 overflow-x-auto pb-1.5 sm:pb-0 snap-x">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Morning Session Slots -->
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon flex items-center gap-1.5">
+                                <i class="fa-regular fa-sun text-gold-dark"></i>
+                                <span>Morning Session (8 AM – 2 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">12 Open</span>
+                        </div>
+                        <div id="morning-slot-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Break Slots (Permanently Crossed Out) -->
+                    <div class="pt-1 border-t border-maroon/10">
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon/55 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mug-hot text-maroon/45"></i>
+                                <span>Afternoon Break (2 PM – 4 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-maroon/55 bg-cream px-2.5 py-0.5 rounded-full border border-maroon/10">Closed Daily</span>
+                        </div>
+                        <div id="break-slot-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Evening Session Slots -->
+                    <div class="pt-1 border-t border-maroon/10">
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon flex items-center gap-1.5">
+                                <i class="fa-regular fa-moon text-maroon"></i>
+                                <span>Evening Session (4 PM – 8 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">8 Open</span>
+                        </div>
+                        <div id="evening-slot-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Patient Details Form -->
+                <div class="lg:col-span-5 lg:sticky lg:top-24">
+                    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="bg-maroon text-cream rounded-3xl p-5 sm:p-7 border-2 border-gold shadow-xl space-y-4">
+                        <div class="border-b border-cream/15 pb-3">
+                            <span class="text-xs uppercase tracking-wider text-gold font-bold">2. Patient Details</span>
+                            <h3 class="text-lg sm:text-xl font-bold mt-0.5">Send WhatsApp Slot Request</h3>
+                        </div>
+
+                        <!-- Selected Slot Summary Pill -->
+                        <div class="bg-maroon-dark/85 rounded-2xl p-3.5 border border-gold/45 flex items-center justify-between gap-3">
+                            <div class="min-w-0">
+                                <div class="text-[11px] uppercase tracking-wider text-gold">Selected Visit Window</div>
+                                <div id="summary-datetime" class="font-bold text-sm sm:text-base text-white mt-0.5 truncate">Select a slot</div>
+                            </div>
+                            <i class="fa-regular fa-clock text-gold text-xl shrink-0"></i>
+                        </div>
+
+                        <div>
+                            <label for="patient-name" class="block text-xs font-semibold text-cream/95 mb-1.5">Full Name *</label>
+                            <input type="text" id="patient-name" required autocomplete="name" placeholder="e.g., Rajesh Kumar Das" class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium placeholder:text-maroon/40 focus:outline-none focus:ring-2 focus:ring-gold">
+                        </div>
+
+                        <div>
+                            <label for="patient-phone" class="block text-xs font-semibold text-cream/95 mb-1.5">Phone / WhatsApp Number *</label>
+                            <input type="tel" id="patient-phone" required inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile number" class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium placeholder:text-maroon/40 focus:outline-none focus:ring-2 focus:ring-gold">
+                        </div>
+
+                        <div>
+                            <label for="patient-condition" class="block text-xs font-semibold text-cream/95 mb-1.5">Primary Condition *</label>
+                            <select id="patient-condition" class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gold">
+                                <option value="Internal / External Piles">Internal / External Piles</option>
+                                <option value="Chronic Fissure">Chronic Fissure</option>
+                                <option value="Complex Fistula">Complex Fistula</option>
+                                <option value="Bleeding / Discomfort Consultation">Bleeding / Discomfort Consultation</option>
+                                <option value="Follow-up Visit">Follow-up Visit</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full min-h-[50px] py-3.5 px-5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.99] text-maroon font-extrabold text-sm sm:text-base transition shadow-lg flex items-center justify-center gap-2 cursor-pointer border border-gold">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Request Slot on WhatsApp</span>
+                        </button>
+
+                        <p class="text-[11px] text-cream/85 text-center leading-relaxed">
+                            Opens WhatsApp with your details pre-filled. Your visit is confirmed once <strong>Mr. S. Biswal / Basta Piles Clinic</strong> replies.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Ayurvedic Treatments -->
+    <section id="treatments" class="py-10 sm:py-16 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Proven Ayurvedic Care</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-maroon mt-1">Specialized Non-Surgical Treatments</h2>
+                <p class="text-xs sm:text-sm text-maroon/75 mt-2">
+                    Root-cause herbal formulations and classical Ayurvedic proctology therapies designed for lasting comfort without hospitalization.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-spa"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Internal &amp; External Piles</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">"Walk in with pain, walk out with peace."</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Gentle, targeted Ayurvedic treatment for bleeding and non-bleeding hemorrhoids (Grades 1–4) that shrinks swollen tissues naturally without surgical excision.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Zero Stitches</span>
+                        <a href="#booking" onclick="presetCondition('Internal / External Piles')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Chronic Fissure Healing</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">Rapid relief from sharp pain &amp; spasm</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Soothing herbal local applications and internal digestive balancers that heal painful mucosal tears, relax sphincter spasm, and prevent recurrence.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Fast Pain Relief</span>
+                        <a href="#booking" onclick="presetCondition('Chronic Fissure')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-mortar-pestle"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Complex Fistulas</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">Recurrence-free classical care</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Time-tested Ayurvedic tract healing for recurrent or complex anal fistulas without damaging sphincter muscles or requiring hospital admission.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">No Hospital Stay</span>
+                        <a href="#booking" onclick="presetCondition('Complex Fistula')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-Step Private Symptom Self-Check & Pathya-Apathya Diet Guide -->
+    <section id="symptom-guide" class="py-10 sm:py-16 bg-white/60 border-b border-maroon/10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-5 sm:p-8 border-2 border-gold shadow-lg">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-maroon/10 pb-4 mb-5 sm:mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">30-Second Confidential Guide</span>
+                        <h2 class="text-lg sm:text-2xl font-extrabold text-maroon mt-0.5">Symptom Self-Check &amp; Ayurvedic Diet</h2>
+                    </div>
+                    <span id="symptom-step-badge" class="px-3 py-1 rounded-full bg-cream text-maroon text-xs font-bold border border-maroon/15">
+                        Step 1 of 3
+                    </span>
+                </div>
+
+                <div id="symptom-wizard-body">
+                    <!-- Rendered dynamically by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Expert & Clinic Location Section (No Profile Picture) -->
+    <section id="about" class="py-10 sm:py-16 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                <!-- Specialist Editorial Card (Full Text Layout, No Photo Placeholder) -->
+                <div class="lg:col-span-6 bg-maroon text-cream rounded-3xl p-6 sm:p-8 border-2 border-gold shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold">
+                                <i class="fa-solid fa-award"></i>
+                                <span>15 Years of Dedicated Practice</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-cream text-xs font-semibold">
+                                <i class="fa-solid fa-leaf text-gold"></i>
+                                <span>Ayurvedic Proctology</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Mr. S. Biswal</h2>
+                            <p class="text-xs sm:text-sm font-semibold text-gold mt-1">Senior Ayurvedic Proctology Practitioner • Basta, Odisha</p>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-cream/90 leading-relaxed">
+                            For 15 years in Basta, Odisha, Mr. S. Biswal has helped thousands of patients overcome chronic Piles, Fissures, and Fistulas using authentic, time-tested Ayurvedic formulations—eliminating the fear, hospital stay, and recovery downtime of surgery.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <div class="bg-maroon-dark/80 p-3.5 rounded-2xl border border-gold/35">
+                                <div class="text-xs font-bold text-gold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-hand-holding-medical"></i>
+                                    <span>Gentle Root-Cause Care</span>
+                                </div>
+                                <p class="text-[11px] text-cream/80 mt-1 leading-relaxed">
+                                    Personalized herbal protocols paired with practical digestive guidance for lasting relief.
+                                </p>
+                            </div>
+                            <div class="bg-maroon-dark/80 p-3.5 rounded-2xl border border-gold/35">
+                                <div class="text-xs font-bold text-gold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>Money-Back Guarantee</span>
+                                </div>
+                                <p class="text-[11px] text-cream/80 mt-1 leading-relaxed">
+                                    Transparent treatment confidence so you can start your recovery with complete peace of mind.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-6 border-t border-cream/15 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="text-xs text-cream/85">
+                            <span class="font-bold text-gold">Direct Clinic Desk:</span> +91 90931 33416
+                        </div>
+                        <a href="#booking" class="min-h-[44px] px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-maroon text-xs font-extrabold transition inline-flex items-center justify-center">
+                            Book Consultation Slot
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clinic Location & Hours -->
+                <div id="location" class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-gold/60 shadow-md flex flex-col justify-between space-y-5">
+                    <div class="space-y-3.5">
+                        <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Visit Our Clinic</span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-maroon">Basta, Odisha</h3>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-solid fa-location-dot text-maroon text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Clinic Address</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">19, Hospital Road, Sadanandapur, Basta, Odisha, 756029</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-solid fa-calendar-week text-gold-dark text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Open All 7 Days</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">Mon–Sun: 8:00 AM – 2:00 PM &amp; 4:00 PM – 8:00 PM (2:00 PM – 4:00 PM Afternoon Break).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Instant WhatsApp Assistance</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">+91 90931 33416 — Message for directions or slot confirmation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="min-h-[46px] py-3 px-4 rounded-xl bg-maroon hover:bg-maroon-dark text-cream text-xs font-bold transition flex items-center justify-center gap-2 shadow">
+                            <i class="fa-solid fa-diamond-turn-right text-gold"></i>
+                            <span>Google Maps Directions</span>
+                        </a>
+                        <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20please%20share%20clinic%20directions." target="_blank" rel="noopener noreferrer" class="min-h-[46px] py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center justify-center gap-2 shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-maroon text-cream pt-10 pb-28 sm:pb-12 border-t-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7 pb-8 border-b border-cream/15">
+                <!-- Col 1 -->
+                <div>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-gold text-maroon flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="font-extrabold text-lg">Basta Piles Clinic</span>
+                    </div>
+                    <p class="text-xs text-cream/80 leading-relaxed">
+                        Permanent Ayurvedic &amp; Non-Surgical relief for Piles, Fissures, and Fistulas led by Mr. S. Biswal (15 years experience).
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="font-bold text-gold text-sm uppercase tracking-wider mb-3">Clinic Timings &amp; Address</h4>
+                    <p class="text-xs text-cream/90 leading-relaxed flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-gold mt-1"></i>
+                        <span>19, Hospital Road, Sadanandapur, Basta, Odisha, 756029</span>
+                    </p>
+                    <p class="text-xs text-cream/90 mt-2.5 flex items-start gap-2">
+                        <i class="fa-regular fa-clock text-gold mt-0.5"></i>
+                        <span>Mon – Sun: 8:00 AM – 2:00 PM &amp; 4:00 PM – 8:00 PM<br><span class="text-gold/90">(Closed 2:00 PM – 4:00 PM)</span></span>
+                    </p>
+                    <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="min-h-[42px] inline-flex items-center gap-2 mt-3 px-3.5 py-2 rounded-xl bg-cream/10 hover:bg-gold hover:text-maroon text-xs font-semibold transition border border-gold/40">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Open in Google Maps</span>
+                    </a>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="font-bold text-gold text-sm uppercase tracking-wider mb-3">Instant Support</h4>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-2.5">
+                        <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20need%20help%20with%20an%20appointment." target="_blank" rel="noopener noreferrer" class="min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>WhatsApp: +91 90931 33416</span>
+                        </a>
+                        <button type="button" onclick="triggerOneTapInstall()" class="min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-maroon text-xs font-bold transition shadow">
+                            <i class="fa-solid fa-download text-sm"></i>
+                            <span>1-Tap Install App</span>
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" onclick="openMyBookingsModal()" class="min-h-[36px] text-xs text-cream/85 hover:text-gold underline">View My Slot Requests</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 text-center text-xs text-cream/70">
+                &copy; <span id="current-year"></span> Basta Piles Clinic. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Bottom Quick Bar -->
+    <div class="fixed bottom-0 inset-x-0 z-30 sm:hidden bg-cream/95 backdrop-blur-md border-t border-gold/60 px-3 py-2 shadow-2xl">
+        <div class="grid grid-cols-3 gap-2">
+            <a href="#booking" class="min-h-[44px] rounded-xl bg-maroon text-cream text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-regular fa-calendar-check text-gold"></i>
+                <span>Book Slot</span>
+            </a>
+            <button type="button" onclick="toggleAssistant()" class="min-h-[44px] rounded-xl bg-white text-maroon border border-maroon/20 text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-solid fa-robot text-gold-dark"></i>
+                <span>Assistant</span>
+            </button>
+            <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20would%20like%20to%20enquire%20about%20a%20visit." target="_blank" rel="noopener noreferrer" class="min-h-[44px] rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating AI Clinic Receptionist & Slot Assistant -->
+    <div class="fixed bottom-16 sm:bottom-5 right-3 sm:right-5 left-3 sm:left-auto z-40 flex flex-col items-end pointer-events-none">
+        <!-- Assistant Panel -->
+        <div id="assistant-panel" class="hidden pointer-events-auto mb-2.5 w-full sm:w-96 bg-white rounded-3xl border-2 border-gold shadow-2xl overflow-hidden flex flex-col max-h-[74vh] sm:max-h-[75vh]">
+            <div class="bg-maroon text-cream p-3.5 sm:p-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-gold text-maroon flex items-center justify-center font-bold shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm leading-tight">Clinic Slot Assistant</h3>
+                        <p class="text-[11px] text-gold">Live Schedule &amp; Care Desk</p>
+                    </div>
+                </div>
+                <button type="button" onclick="toggleAssistant(false)" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close Assistant">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Messages Feed -->
+            <div id="assistant-messages" class="p-3.5 sm:p-4 space-y-3 overflow-y-auto chat-scroll bg-cream/40 flex-1 min-h-[220px]">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Quick Question Chips -->
+            <div class="px-3 py-2 bg-white border-t border-maroon/10 flex gap-1.5 overflow-x-auto">
+                <button type="button" onclick="sendQuickPrompt('Check Today\'s Open Slots')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Today's Slots
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Is surgery required?')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    No Surgery?
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Money-Back Guarantee details')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Guarantee
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Clinic Timings & Address')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Timings &amp; Map
+                </button>
+            </div>
+
+            <!-- Input Box -->
+            <form onsubmit="handleAssistantSubmit(event)" class="p-2.5 sm:p-3 bg-white border-t border-maroon/10 flex items-center gap-2">
+                <input type="text" id="assistant-input" placeholder="Ask about slots, piles, timings..." class="flex-1 min-h-[42px] px-3.5 py-2 rounded-xl bg-cream/60 border border-maroon/15 text-base sm:text-sm text-maroon focus:outline-none focus:border-maroon">
+                <button type="submit" class="w-10 h-10 rounded-xl bg-maroon hover:bg-maroon-dark text-gold flex items-center justify-center transition shrink-0" aria-label="Send message">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Floating Trigger Button (Desktop/Tablet) -->
+        <button type="button" onclick="toggleAssistant()" class="hidden sm:inline-flex pointer-events-auto px-4 py-3.5 rounded-full bg-maroon hover:bg-maroon-dark text-cream font-bold text-sm shadow-2xl border-2 border-gold items-center gap-2.5 transition hover:scale-105">
+            <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+            <i class="fa-solid fa-comment-dots text-gold text-base"></i>
+            <span>Ask Slot Assistant</span>
+        </button>
+    </div>
+
+    <!-- Modal: Pending WhatsApp Confirmation Status -->
+    <div id="token-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-md w-full border-t-2 sm:border-2 border-gold shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-maroon text-cream p-4 sm:p-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Sent to Clinic WhatsApp</span>
+                    <h3 class="font-bold text-base sm:text-lg">Pending Owner Reply</h3>
+                </div>
+                <button type="button" onclick="closeModal('token-modal')" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="token-modal-body" class="p-5 sm:p-6 space-y-4 overflow-y-auto">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: My Saved Requests -->
+    <div id="my-bookings-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full border-t-2 sm:border-2 border-gold shadow-2xl overflow-hidden max-h-[88vh] flex flex-col">
+            <div class="bg-maroon text-cream p-4 sm:p-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Saved on This Device</span>
+                    <h3 class="font-bold text-base sm:text-lg">My WhatsApp Slot Requests</h3>
+                </div>
+                <button type="button" onclick="closeModal('my-bookings-modal')" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="my-bookings-list" class="p-4 sm:p-5 overflow-y-auto space-y-3 flex-1 bg-cream/40">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Banner -->
+    <div id="toast-banner" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-maroon text-cream px-4 py-3 rounded-2xl border-2 border-gold shadow-2xl text-xs sm:text-sm font-semibold flex items-center gap-2.5 w-[92vw] sm:w-auto sm:max-w-md">
+        <i class="fa-solid fa-circle-check text-gold shrink-0"></i>
+        <span id="toast-message" class="leading-snug">Notification</span>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // ==========================================
+        // 8. 1-TAP APP INSTALL (ADD TO HOME SCREEN)
+        // ==========================================
+        let deferredInstallPrompt = null;
+
+        function setupOneTapInstall() {
+            const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="#800000"/><circle cx="256" cy="256" r="190" fill="none" stroke="#D4AF37" stroke-width="18"/><path d="M256 125c-65 55-95 110-95 162 0 53 42 95 95 95s95-42 95-95c0-52-30-107-95-162zm0 218c-32 0-58-26-58-58 0-30 20-65 58-102 38 37 58 72 58 102 0 32-26 58-58 58z" fill="#D4AF37"/></svg>`;
+            const iconUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgIcon);
+
+            const manifestObj = {
+                name: "Basta Piles Clinic",
+                short_name: "Basta Clinic",
+                start_url: window.location.href,
+                scope: "./",
+                display: "standalone",
+                background_color: "#FDF5E6",
+                theme_color: "#800000",
+                icons: [
+                    { src: iconUrl, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+                    { src: iconUrl, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+                ]
+            };
+
+            const manifestBlob = new Blob([JSON.stringify(manifestObj)], { type: 'application/manifest+json' });
+            const manifestLink = document.createElement('link');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = URL.createObjectURL(manifestBlob);
+            document.head.appendChild(manifestLink);
+
+            if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+                const swCode = `
+                    self.addEventListener('install', (e) => self.skipWaiting());
+                    self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
+                    self.addEventListener('fetch', (e) => {
+                        e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+                    });
+                `;
+                const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+            }
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredInstallPrompt = e;
+            });
+
+            window.addEventListener('appinstalled', () => {
+                deferredInstallPrompt = null;
+                showToast("Basta Piles Clinic added to your Home Screen!");
+            });
+        }
+
+        async function triggerOneTapInstall() {
+            if (deferredInstallPrompt) {
+                deferredInstallPrompt.prompt();
+                const { outcome } = await deferredInstallPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    deferredInstallPrompt = null;
+                }
+                return;
+            }
+
+            const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+            if (isIOS) {
+                showToast("Tap the Share icon at the bottom, then tap 'Add to Home Screen'.");
+            } else {
+                showToast("Tap your browser's ⋮ menu (top right), then tap 'Install app' or 'Add to Home screen'.");
+            }
+        }
+
+        // ==========================================
+        // 9. UTILITIES & INITIALIZATION
+        // ==========================================
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            const banner = document.getElementById('toast-banner');
+            document.getElementById('toast-message').textContent = msg;
+            banner.classList.remove('hidden');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                banner.classList.add('hidden');
+            }, 3500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            setupOneTapInstall();
+            renderAll();
+            renderSymptomStep(1);
+        });
+    </script>
+</body>
+</html>
