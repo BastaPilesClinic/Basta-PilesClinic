@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800000">
+    <meta name="description" content="Basta Piles Clinic in Basta, Odisha. View clinic details, request a consultation slot, and contact the clinic on WhatsApp.">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basta Clinic">
+    <title>Basta Piles Clinic | Consultation &amp; Booking</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FDF5E6',
+                        maroon: {
+                            DEFAULT: '#800000',
+                            dark: '#5C0000',
+                            light: '#A31616'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            dark: '#B59226',
+                            light: '#E8CC6B'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #FDF5E6;
+            color: #4A0404;
+            font-family: 'Poppins', sans-serif;
+        }
+        .maroon-shadow {
+            box-shadow: 0 14px 30px -8px rgba(128, 0, 0, 0.26);
+        }
+        .chat-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(128, 0, 0, 0.25);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-cream text-maroon antialiased overflow-x-hidden selection:bg-maroon selection:text-cream">
+
+    <!-- Top Clinic Status Banner -->
+    <div class="bg-maroon text-cream text-[11px] sm:text-sm py-2 px-3 sm:px-4 border-b border-gold/40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5 min-w-0">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span class="font-medium truncate">Hours: <strong class="text-gold">8 AM–2 PM &amp; 4–8 PM</strong> <span class="hidden sm:inline">(Break: 2–4 PM)</span></span>
+            </div>
+            <div class="flex items-center gap-2.5 sm:gap-4 shrink-0">
+                <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition hidden md:flex items-center gap-1">
+                    <i class="fa-solid fa-location-dot text-gold"></i>
+                    <span>19, Hospital Road, Sadanandapur, Basta, Odisha</span>
+                </a>
+                <button type="button" onclick="openMyBookingsModal()" class="min-h-[32px] bg-gold/20 hover:bg-gold hover:text-maroon text-gold px-2.5 py-1 rounded-full font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>My Requests (<span id="top-pass-count">0</span>)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Header Navigation -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-maroon/10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center shadow-md border border-gold group-hover:scale-105 transition shrink-0">
+                    <i class="fa-solid fa-leaf text-base sm:text-xl"></i>
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-base sm:text-xl font-extrabold text-maroon tracking-tight leading-none truncate">Basta Piles Clinic</h1>
+                    <p class="text-[10px] sm:text-xs font-medium text-maroon/70 mt-0.5 truncate">Ayurvedic Proctology Care</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-maroon/80">
+                <a href="#booking" class="hover:text-maroon transition">Book Slot</a>
+                <a href="#treatments" class="hover:text-maroon transition">Treatments</a>
+                <a href="#symptom-guide" class="hover:text-maroon transition">Symptom Check</a>
+                <a href="#about" class="hover:text-maroon transition">Mr. S. Biswal</a>
+                <a href="#location" class="hover:text-maroon transition">Visit Us</a>
+            </nav>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <button type="button" id="installAppBtn" onclick="triggerOneTapInstall()" class="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-600/30 bg-emerald-50 text-emerald-800 text-xs sm:text-sm font-bold hover:bg-emerald-600 hover:text-white transition shadow-sm" title="1-Tap Install App" aria-label="1-Tap Install App">
+                    <i class="fa-solid fa-download text-sm"></i>
+                    <span class="hidden sm:inline">1-Tap Install</span>
+                </button>
+                <button type="button" onclick="toggleAssistant(true)" class="hidden lg:inline-flex min-h-[44px] items-center gap-2 px-3.5 py-2 rounded-xl border border-maroon/20 bg-white text-maroon text-xs sm:text-sm font-semibold hover:border-gold hover:bg-gold/10 transition shadow-sm">
+                    <i class="fa-solid fa-robot text-gold-dark"></i>
+                    <span>Ask Assistant</span>
+                </button>
+                <a href="#booking" class="min-h-[44px] inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-maroon text-cream text-xs sm:text-sm font-semibold hover:bg-maroon-dark transition shadow-md border border-gold/40">
+                    <i class="fa-regular fa-calendar-check text-gold"></i>
+                    <span>Book Slot</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-8 sm:py-16 lg:py-20 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
+                <!-- Left Copy -->
+                <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-maroon/10 border border-gold/60 text-maroon text-[11px] sm:text-sm font-semibold">
+                        <i class="fa-solid fa-seedling text-maroon"></i>
+                        <span>Ayurvedic Proctology Consultation</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-maroon leading-[1.18]">
+                        Consultation for Piles—<span class="text-gold-dark underline decoration-gold/60 underline-offset-4">Explore Your Care Options.</span>
+                    </h2>
+
+                    <p class="text-sm sm:text-base lg:text-lg text-maroon/80 max-w-2xl leading-relaxed">
+                        Consultation and care information from <strong class="text-maroon">Mr. S. Biswal</strong>, who has provided Ayurvedic consultations in Basta, Odisha, for 15 years.
+                    </p>
+
+                    <!-- Primary CTAs -->
+                    <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+                        <a href="#booking" class="min-h-[48px] justify-center inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-maroon text-cream font-bold text-sm sm:text-base hover:bg-maroon-dark transition maroon-shadow border border-gold">
+                            <i class="fa-solid fa-calendar-day text-gold"></i>
+                            <span>Select Slot &amp; Book</span>
+                        </a>
+                        <button type="button" onclick="toggleAssistant(true, 'Check Today\'s Open Slots')" class="min-h-[48px] justify-center inline-flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-white text-maroon font-bold text-sm sm:text-base hover:bg-gold/10 transition border-2 border-maroon/15 shadow-sm">
+                            <i class="fa-solid fa-comment-medical text-maroon"></i>
+                            <span>Ask Clinic Assistant</span>
+                        </button>
+                    </div>
+
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-3">
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-maroon/10 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">Care Options</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">Options depend on clinical assessment</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gold/20 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">Clear Information</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">Ask for written terms and fees</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gold/40 shadow-sm flex sm:block items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-maroon/10 text-maroon flex items-center justify-center sm:mb-2 shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-maroon text-xs sm:text-sm">7-Day Clinic Hours</div>
+                                <div class="text-[11px] text-maroon/65 mt-0.5">8 AM–2 PM &amp; 4 PM–8 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Live Clinic Status Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl p-5 sm:p-7 border-2 border-gold shadow-xl relative">
+                        <div class="flex items-center justify-between gap-2 border-b border-maroon/10 pb-3.5 mb-3.5">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-gold-dark">Clinic Desk</span>
+                                <h3 class="text-base sm:text-xl font-bold text-maroon mt-0.5">Today's Booking Windows</h3>
+                            </div>
+                            <span id="hero-open-badge" class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] sm:text-xs font-bold shrink-0">
+                                20 Request Windows
+                            </span>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-maroon/75 mb-3.5">
+                            Tap a quick window below to jump straight to booking with <strong>Mr. S. Biswal</strong>:
+                        </p>
+
+                        <div id="hero-quick-slots" class="grid grid-cols-2 gap-2.5 mb-4">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="bg-cream rounded-2xl p-3.5 border border-maroon/10 flex items-center justify-between gap-3">
+                            <div class="text-xs text-maroon/80">
+                                <div class="font-bold text-maroon">Need direct help?</div>
+                                <div>Instant WhatsApp desk</div>
+                            </div>
+                            <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20would%20like%20to%20enquire%20about%20a%20visit." target="_blank" rel="noopener noreferrer" class="min-h-[42px] px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 transition shrink-0 shadow">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prominent Slot Selection Window -->
+    <section id="booking" class="py-10 sm:py-16 bg-white/70 border-b border-maroon/10 scroll-mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mb-6 sm:mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Direct WhatsApp Slot Request</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-maroon mt-1">Select Your Consultation Slot</h2>
+                <p class="text-xs sm:text-sm text-maroon/75 mt-2 leading-relaxed">
+                    Morning (<strong>8:00 AM – 2:00 PM</strong>) and Evening (<strong>4:00 PM – 8:00 PM</strong>) slots are open to request. Afternoon break (<strong>2:00 PM – 4:00 PM</strong>) is closed daily. Confirmed once <strong>Mr. S. Biswal / Basta Piles Clinic</strong> replies on WhatsApp.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                <!-- Left: Date & Slot Selection Window -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-7 border-2 border-gold/60 shadow-md space-y-5 sm:space-y-6">
+                    <!-- Date Selector (Horizontal Snap Scroll on Mobile) -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-maroon/75">1. Choose Visit Date</label>
+                            <span class="text-[11px] text-maroon/55 sm:hidden">Swipe &rarr;</span>
+                        </div>
+                        <div id="date-selector" class="flex sm:grid sm:grid-cols-7 gap-2 overflow-x-auto pb-1.5 sm:pb-0 snap-x">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Morning Session Slots -->
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon flex items-center gap-1.5">
+                                <i class="fa-regular fa-sun text-gold-dark"></i>
+                                <span>Morning Session (8 AM – 2 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">12 Request Windows</span>
+                        </div>
+                        <div id="morning-slot-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Break Slots (Permanently Crossed Out) -->
+                    <div class="pt-1 border-t border-maroon/10">
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon/55 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mug-hot text-maroon/45"></i>
+                                <span>Afternoon Break (2 PM – 4 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-maroon/55 bg-cream px-2.5 py-0.5 rounded-full border border-maroon/10">Closed Daily</span>
+                        </div>
+                        <div id="break-slot-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Evening Session Slots -->
+                    <div class="pt-1 border-t border-maroon/10">
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <label class="text-xs font-bold uppercase tracking-wider text-maroon flex items-center gap-1.5">
+                                <i class="fa-regular fa-moon text-maroon"></i>
+                                <span>Evening Session (4 PM – 8 PM)</span>
+                            </label>
+                            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">8 Request Windows</span>
+                        </div>
+                        <div id="evening-slot-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-2.5">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Patient Details Form -->
+                <div class="lg:col-span-5 lg:sticky lg:top-24">
+                    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="bg-maroon text-cream rounded-3xl p-5 sm:p-7 border-2 border-gold shadow-xl space-y-4">
+                        <div class="border-b border-cream/15 pb-3">
+                            <span class="text-xs uppercase tracking-wider text-gold font-bold">2. Patient Details</span>
+                            <h3 class="text-lg sm:text-xl font-bold mt-0.5">Send WhatsApp Slot Request</h3>
+                        </div>
+
+                        <!-- Selected Slot Summary Pill -->
+                        <div class="bg-maroon-dark/85 rounded-2xl p-3.5 border border-gold/45 flex items-center justify-between gap-3">
+                            <div class="min-w-0">
+                                <div class="text-[11px] uppercase tracking-wider text-gold">Selected Visit Window</div>
+                                <div id="summary-datetime" class="font-bold text-sm sm:text-base text-white mt-0.5 truncate">Select a slot</div>
+                            </div>
+                            <i class="fa-regular fa-clock text-gold text-xl shrink-0"></i>
+                        </div>
+
+                        <div>
+                            <label for="patient-name" class="block text-xs font-semibold text-cream/95 mb-1.5">Full Name *</label>
+                            <input type="text" id="patient-name" required minlength="2" maxlength="80" autocomplete="name" placeholder="e.g., Rajesh Kumar Das" class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium placeholder:text-maroon/40 focus:outline-none focus:ring-2 focus:ring-gold">
+                        </div>
+
+                        <div>
+                            <label for="patient-phone" class="block text-xs font-semibold text-cream/95 mb-1.5">Phone / WhatsApp Number *</label>
+                            <input type="tel" id="patient-phone" required inputmode="numeric" autocomplete="tel" pattern="[6-9][0-9]{9}" maxlength="10" title="Enter a valid 10-digit Indian mobile number" placeholder="10-digit mobile number" class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium placeholder:text-maroon/40 focus:outline-none focus:ring-2 focus:ring-gold">
+                        </div>
+
+                        <div>
+                            <label for="patient-condition" class="block text-xs font-semibold text-cream/95 mb-1.5">Primary Condition *</label>
+                            <select id="patient-condition" required class="w-full min-h-[46px] px-3.5 py-2.5 rounded-xl bg-white text-maroon text-base sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gold">
+                                <option value="" disabled selected>Select a reason for your visit</option>
+                                <option value="Internal / External Piles">Internal / External Piles</option>
+                                <option value="Chronic Fissure">Chronic Fissure</option>
+                                <option value="Complex Fistula">Complex Fistula</option>
+                                <option value="Bleeding / Discomfort Consultation">Bleeding / Discomfort Consultation</option>
+                                <option value="Follow-up Visit">Follow-up Visit</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full min-h-[50px] py-3.5 px-5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.99] text-maroon font-extrabold text-sm sm:text-base transition shadow-lg flex items-center justify-center gap-2 cursor-pointer border border-gold">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Request Slot on WhatsApp</span>
+                        </button>
+
+                        <p class="text-[11px] text-cream/85 text-center leading-relaxed">
+                            Opens WhatsApp with your details pre-filled. Review and send the message yourself. Your request is not confirmed until <strong>Mr. S. Biswal / Basta Piles Clinic</strong> replies. Only the request reference and slot details are saved in this browser; your name, phone number and health details are not stored in the website history.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Ayurvedic Treatments -->
+    <section id="treatments" class="py-10 sm:py-16 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Ayurvedic Consultation</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-maroon mt-1">Consultations for Piles, Fissures &amp; Fistulas</h2>
+                <p class="text-xs sm:text-sm text-maroon/75 mt-2">
+                    Learn about available care approaches. Recommendations, suitability and expected outcomes should be discussed with a qualified clinician after an assessment.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-spa"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Internal &amp; External Piles</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">"Discuss symptoms and available care options."</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Consultation for symptoms associated with internal or external haemorrhoids. A clinician can discuss suitable options after an appropriate examination.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Consultation Available</span>
+                        <a href="#booking" onclick="presetCondition('Internal / External Piles')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Fissure Consultation</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">Assessment of symptoms and care options</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Consultation for symptoms associated with anal fissures. Suitable care depends on the cause, duration and findings from a clinical assessment.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Individual Assessment</span>
+                        <a href="#booking" onclick="presetCondition('Chronic Fissure')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gold/50 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-maroon text-gold flex items-center justify-center text-lg sm:text-xl mb-4 shadow">
+                            <i class="fa-solid fa-mortar-pestle"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-maroon">Complex Fistulas</h3>
+                        <p class="text-xs font-semibold text-gold-dark italic mt-1">Individual assessment and care options</p>
+                        <p class="text-xs sm:text-sm text-maroon/75 mt-3 leading-relaxed">
+                            Assessment and discussion of available options for anal fistula symptoms. Treatment, risks and the possible need for a procedure vary from case to case.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-maroon/10 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Case-by-Case Care</span>
+                        <a href="#booking" onclick="presetCondition('Complex Fistula')" class="min-h-[40px] px-2 text-xs font-bold text-maroon hover:text-gold-dark flex items-center gap-1">
+                            <span>Book Consult</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-Step Private Symptom Self-Check & Pathya-Apathya Diet Guide -->
+    <section id="symptom-guide" class="py-10 sm:py-16 bg-white/60 border-b border-maroon/10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-5 sm:p-8 border-2 border-gold shadow-lg">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-maroon/10 pb-4 mb-5 sm:mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">30-Second Confidential Guide</span>
+                        <h2 class="text-lg sm:text-2xl font-extrabold text-maroon mt-0.5">Symptom Self-Check &amp; Ayurvedic Diet</h2>
+                    </div>
+                    <span id="symptom-step-badge" class="px-3 py-1 rounded-full bg-cream text-maroon text-xs font-bold border border-maroon/15">
+                        Step 1 of 3
+                    </span>
+                </div>
+
+                <div id="symptom-wizard-body">
+                    <!-- Rendered dynamically by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Expert & Clinic Location Section (No Profile Picture) -->
+    <section id="about" class="py-10 sm:py-16 border-b border-maroon/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                <!-- Specialist Editorial Card (Full Text Layout, No Photo Placeholder) -->
+                <div class="lg:col-span-6 bg-maroon text-cream rounded-3xl p-6 sm:p-8 border-2 border-gold shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold">
+                                <i class="fa-solid fa-award"></i>
+                                <span>15 Years of Dedicated Practice</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-cream text-xs font-semibold">
+                                <i class="fa-solid fa-leaf text-gold"></i>
+                                <span>Ayurvedic Proctology</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Mr. S. Biswal</h2>
+                            <p class="text-xs sm:text-sm font-semibold text-gold mt-1">Ayurvedic Practitioner • Basta, Odisha</p>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-cream/90 leading-relaxed">
+                            Mr. S. Biswal has provided Ayurvedic consultations in Basta, Odisha, for 15 years, including consultations for people reporting piles, fissure and fistula symptoms. A qualified clinician should assess symptoms and explain suitable options, risks and expected outcomes.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <div class="bg-maroon-dark/80 p-3.5 rounded-2xl border border-gold/35">
+                                <div class="text-xs font-bold text-gold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-hand-holding-medical"></i>
+                                    <span>Gentle Root-Cause Care</span>
+                                </div>
+                                <p class="text-[11px] text-cream/80 mt-1 leading-relaxed">
+                                    Discuss individual concerns and available care approaches during a consultation.
+                                </p>
+                            </div>
+                            <div class="bg-maroon-dark/80 p-3.5 rounded-2xl border border-gold/35">
+                                <div class="text-xs font-bold text-gold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>Treatment Information</span>
+                                </div>
+                                <p class="text-[11px] text-cream/80 mt-1 leading-relaxed">
+                                    Ask the clinic for treatment details, fees, expected outcomes and any written guarantee terms before proceeding.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-6 border-t border-cream/15 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="text-xs text-cream/85">
+                            <span class="font-bold text-gold">Direct Clinic Desk:</span> +91 90931 33416
+                        </div>
+                        <a href="#booking" class="min-h-[44px] px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-maroon text-xs font-extrabold transition inline-flex items-center justify-center">
+                            Book Consultation Slot
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clinic Location & Hours -->
+                <div id="location" class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-gold/60 shadow-md flex flex-col justify-between space-y-5">
+                    <div class="space-y-3.5">
+                        <span class="text-xs font-bold uppercase tracking-widest text-gold-dark">Visit Our Clinic</span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-maroon">Basta, Odisha</h3>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-solid fa-location-dot text-maroon text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Clinic Address</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">19, Hospital Road, Sadanandapur, Basta, Odisha, 756029</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-solid fa-calendar-week text-gold-dark text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Open All 7 Days</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">Mon–Sun: 8:00 AM – 2:00 PM &amp; 4:00 PM – 8:00 PM (2:00 PM – 4:00 PM Afternoon Break).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-maroon/10">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-lg mt-0.5 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-maroon text-sm">Instant WhatsApp Assistance</h4>
+                                <p class="text-xs text-maroon/75 mt-0.5 leading-relaxed">+91 90931 33416 — Message for directions or slot confirmation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="min-h-[46px] py-3 px-4 rounded-xl bg-maroon hover:bg-maroon-dark text-cream text-xs font-bold transition flex items-center justify-center gap-2 shadow">
+                            <i class="fa-solid fa-diamond-turn-right text-gold"></i>
+                            <span>Google Maps Directions</span>
+                        </a>
+                        <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20please%20share%20clinic%20directions." target="_blank" rel="noopener noreferrer" class="min-h-[46px] py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center justify-center gap-2 shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-maroon text-cream pt-10 pb-28 sm:pb-12 border-t-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7 pb-8 border-b border-cream/15">
+                <!-- Col 1 -->
+                <div>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-gold text-maroon flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="font-extrabold text-lg">Basta Piles Clinic</span>
+                    </div>
+                    <p class="text-xs text-cream/80 leading-relaxed">
+                        Ayurvedic consultations for piles, fissure and fistula symptoms with Mr. S. Biswal in Basta, Odisha.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="font-bold text-gold text-sm uppercase tracking-wider mb-3">Clinic Timings &amp; Address</h4>
+                    <p class="text-xs text-cream/90 leading-relaxed flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-gold mt-1"></i>
+                        <span>19, Hospital Road, Sadanandapur, Basta, Odisha, 756029</span>
+                    </p>
+                    <p class="text-xs text-cream/90 mt-2.5 flex items-start gap-2">
+                        <i class="fa-regular fa-clock text-gold mt-0.5"></i>
+                        <span>Mon – Sun: 8:00 AM – 2:00 PM &amp; 4:00 PM – 8:00 PM<br><span class="text-gold/90">(Closed 2:00 PM – 4:00 PM)</span></span>
+                    </p>
+                    <a href="https://maps.app.goo.gl/qPquMjdF8y1n4sxEA" target="_blank" rel="noopener noreferrer" class="min-h-[42px] inline-flex items-center gap-2 mt-3 px-3.5 py-2 rounded-xl bg-cream/10 hover:bg-gold hover:text-maroon text-xs font-semibold transition border border-gold/40">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Open in Google Maps</span>
+                    </a>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="font-bold text-gold text-sm uppercase tracking-wider mb-3">Instant Support</h4>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-2.5">
+                        <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20need%20help%20with%20an%20appointment." target="_blank" rel="noopener noreferrer" class="min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>WhatsApp: +91 90931 33416</span>
+                        </a>
+                        <button type="button" onclick="triggerOneTapInstall()" class="min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-maroon text-xs font-bold transition shadow">
+                            <i class="fa-solid fa-download text-sm"></i>
+                            <span>1-Tap Install App</span>
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" onclick="openMyBookingsModal()" class="min-h-[36px] text-xs text-cream/85 hover:text-gold underline">View My Slot Requests</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 text-center text-xs text-cream/70">
+                &copy; <span id="current-year"></span> Basta Piles Clinic. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Bottom Quick Bar -->
+    <div class="fixed bottom-0 inset-x-0 z-30 sm:hidden bg-cream/95 backdrop-blur-md border-t border-gold/60 px-3 py-2 shadow-2xl">
+        <div class="grid grid-cols-3 gap-2">
+            <a href="#booking" class="min-h-[44px] rounded-xl bg-maroon text-cream text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-regular fa-calendar-check text-gold"></i>
+                <span>Book Slot</span>
+            </a>
+            <button type="button" onclick="toggleAssistant()" class="min-h-[44px] rounded-xl bg-white text-maroon border border-maroon/20 text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-solid fa-robot text-gold-dark"></i>
+                <span>Assistant</span>
+            </button>
+            <a href="https://wa.me/919093133416?text=Namaste%20Basta%20Piles%20Clinic,%20I%20would%20like%20to%20enquire%20about%20a%20visit." target="_blank" rel="noopener noreferrer" class="min-h-[44px] rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating AI Clinic Receptionist & Slot Assistant -->
+    <div class="fixed bottom-16 sm:bottom-5 right-3 sm:right-5 left-3 sm:left-auto z-40 flex flex-col items-end pointer-events-none">
+        <!-- Assistant Panel -->
+        <div id="assistant-panel" class="hidden pointer-events-auto mb-2.5 w-full sm:w-96 bg-white rounded-3xl border-2 border-gold shadow-2xl overflow-hidden flex flex-col max-h-[74vh] sm:max-h-[75vh]">
+            <div class="bg-maroon text-cream p-3.5 sm:p-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-gold text-maroon flex items-center justify-center font-bold shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm leading-tight">Clinic Slot Assistant</h3>
+                        <p class="text-[11px] text-gold">Booking &amp; Care Desk</p>
+                    </div>
+                </div>
+                <button type="button" onclick="toggleAssistant(false)" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close Assistant">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Messages Feed -->
+            <div id="assistant-messages" role="log" aria-live="polite" aria-relevant="additions" class="p-3.5 sm:p-4 space-y-3 overflow-y-auto chat-scroll bg-cream/40 flex-1 min-h-[220px]">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Quick Question Chips -->
+            <div class="px-3 py-2 bg-white border-t border-maroon/10 flex gap-1.5 overflow-x-auto">
+                <button type="button" onclick="sendQuickPrompt('Check Today\'s Open Slots')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Today's Slots
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Is surgery required?')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Care Options?
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Treatment information and guarantee terms')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Terms &amp; Fees
+                </button>
+                <button type="button" onclick="sendQuickPrompt('Clinic Timings & Address')" class="shrink-0 min-h-[34px] px-3 py-1 rounded-full bg-cream hover:bg-gold/30 text-maroon text-[11px] font-semibold border border-maroon/15 transition">
+                    Timings &amp; Map
+                </button>
+            </div>
+
+            <!-- Input Box -->
+            <form onsubmit="handleAssistantSubmit(event)" class="p-2.5 sm:p-3 bg-white border-t border-maroon/10 flex items-center gap-2">
+                <input type="text" id="assistant-input" aria-label="Ask the clinic website assistant" placeholder="Ask about slots, piles, timings..." class="flex-1 min-h-[42px] px-3.5 py-2 rounded-xl bg-cream/60 border border-maroon/15 text-base sm:text-sm text-maroon focus:outline-none focus:border-maroon">
+                <button type="submit" class="w-10 h-10 rounded-xl bg-maroon hover:bg-maroon-dark text-gold flex items-center justify-center transition shrink-0" aria-label="Send message">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Floating Trigger Button (Desktop/Tablet) -->
+        <button type="button" onclick="toggleAssistant()" class="hidden sm:inline-flex pointer-events-auto px-4 py-3.5 rounded-full bg-maroon hover:bg-maroon-dark text-cream font-bold text-sm shadow-2xl border-2 border-gold items-center gap-2.5 transition hover:scale-105">
+            <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+            <i class="fa-solid fa-comment-dots text-gold text-base"></i>
+            <span>Ask Slot Assistant</span>
+        </button>
+    </div>
+
+    <!-- Modal: Pending WhatsApp Confirmation Status -->
+    <div id="token-modal" role="dialog" aria-modal="true" aria-labelledby="token-modal-title" aria-hidden="true" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-md w-full border-t-2 sm:border-2 border-gold shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-maroon text-cream p-4 sm:p-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Sent to Clinic WhatsApp</span>
+                    <h3 id="token-modal-title" class="font-bold text-base sm:text-lg">Pending Owner Reply</h3>
+                </div>
+                <button type="button" onclick="closeModal('token-modal')" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="token-modal-body" class="p-5 sm:p-6 space-y-4 overflow-y-auto">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: My Saved Requests -->
+    <div id="my-bookings-modal" role="dialog" aria-modal="true" aria-labelledby="my-bookings-modal-title" aria-hidden="true" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full border-t-2 sm:border-2 border-gold shadow-2xl overflow-hidden max-h-[88vh] flex flex-col">
+            <div class="bg-maroon text-cream p-4 sm:p-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Saved on This Device</span>
+                    <h3 id="my-bookings-modal-title" class="font-bold text-base sm:text-lg">My WhatsApp Slot Requests</h3>
+                </div>
+                <button type="button" onclick="closeModal('my-bookings-modal')" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="my-bookings-list" class="p-4 sm:p-5 overflow-y-auto space-y-3 flex-1 bg-cream/40">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Banner -->
+    <div id="toast-banner" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-maroon text-cream px-4 py-3 rounded-2xl border-2 border-gold shadow-2xl text-xs sm:text-sm font-semibold flex items-center gap-2.5 w-[92vw] sm:w-auto sm:max-w-md">
+        <i class="fa-solid fa-circle-check text-gold shrink-0"></i>
+        <span id="toast-message" class="leading-snug">Notification</span>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        'use strict';
+
+        // Clinic contact details are kept in one place to avoid mismatched links.
+        const CLINIC = Object.freeze({
+            whatsapp: '919093133416',
+            address: '19, Hospital Road, Sadanandapur, Basta, Odisha, 756029',
+            hours: '8:00 AM–2:00 PM and 4:00 PM–8:00 PM',
+            storageKey: 'bastaClinicRequests_v1'
+        });
+
+        const MORNING_SLOTS = Array.from({ length: 12 }, (_, i) => {
+            const mins = 8 * 60 + i * 30;
+            return { value: `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`, label: formatTime(mins) };
+        });
+        const EVENING_SLOTS = Array.from({ length: 8 }, (_, i) => {
+            const mins = 16 * 60 + i * 30;
+            return { value: `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`, label: formatTime(mins) };
+        });
+        const BREAK_SLOTS = ['2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'];
+
+        let selectedDate = localISODate(new Date());
+        let selectedSlot = null;
+        let deferredInstallPrompt = null;
+        let toastTimer = null;
+        let assistantInitialized = false;
+        let symptomStep = 1;
+        let symptomComplete = false;
+        const symptomAnswers = { symptom: '', duration: '', diet: '' };
+
+        function localISODate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatTime(totalMinutes) {
+            const h24 = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            const suffix = h24 >= 12 ? 'PM' : 'AM';
+            const h12 = h24 % 12 || 12;
+            return `${h12}:${String(minutes).padStart(2, '0')} ${suffix}`;
+        }
+
+        function formatDate(dateString, options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) {
+            const parts = String(dateString).split('-').map(Number);
+            if (parts.length !== 3 || parts.some(Number.isNaN)) return String(dateString);
+            return new Intl.DateTimeFormat('en-IN', options).format(new Date(parts[0], parts[1] - 1, parts[2]));
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function safeReadRequests() {
+            try {
+                const parsed = JSON.parse(localStorage.getItem(CLINIC.storageKey) || '[]');
+                return Array.isArray(parsed) ? parsed.filter(item => item && typeof item.id === 'string') : [];
+            } catch (error) {
+                console.warn('Unable to read saved appointment requests:', error);
+                return [];
+            }
+        }
+
+        function safeSaveRequests(requests) {
+            try {
+                localStorage.setItem(CLINIC.storageKey, JSON.stringify(requests));
+                return true;
+            } catch (error) {
+                console.warn('Unable to save appointment requests:', error);
+                return false;
+            }
+        }
+
+        function makeRequestId() {
+            if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+                return `BPC-${window.crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+            }
+            return `BPC-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+        }
+
+        function showToast(message) {
+            const banner = document.getElementById('toast-banner');
+            const messageNode = document.getElementById('toast-message');
+            if (!banner || !messageNode) return;
+            messageNode.textContent = message;
+            banner.classList.remove('hidden');
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(() => banner.classList.add('hidden'), 3800);
+        }
+
+        // ---------------- Booking calendar and request windows ----------------
+        function renderAll() {
+            renderDateSelector();
+            renderSlotGrids();
+            renderHeroQuickSlots();
+            updateSlotSummary();
+            updateSavedRequestCount();
+        }
+
+        function renderDateSelector() {
+            const container = document.getElementById('date-selector');
+            if (!container) return;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const dates = Array.from({ length: 7 }, (_, i) => {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                return date;
+            });
+
+            container.innerHTML = dates.map((date, index) => {
+                const iso = localISODate(date);
+                const active = iso === selectedDate;
+                const dayLabel = index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : new Intl.DateTimeFormat('en-IN', { weekday: 'short' }).format(date);
+                const dateLabel = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short' }).format(date);
+                return `<button type="button" data-date="${iso}" aria-pressed="${active}" onclick="selectDate('${iso}')" class="snap-start shrink-0 min-w-[76px] sm:min-w-0 min-h-[66px] rounded-xl border-2 px-2 py-2 text-center transition ${active ? 'bg-maroon text-cream border-gold shadow-md' : 'bg-cream/60 text-maroon border-maroon/10 hover:border-gold hover:bg-gold/10'}">
+                    <span class="block text-[10px] font-semibold uppercase tracking-wide">${escapeHtml(dayLabel)}</span>
+                    <span class="block text-sm font-extrabold mt-0.5">${escapeHtml(dateLabel)}</span>
+                </button>`;
+            }).join('');
+        }
+
+        function selectDate(date) {
+            selectedDate = date;
+            selectedSlot = null;
+            renderDateSelector();
+            renderSlotGrids();
+            renderHeroQuickSlots();
+            updateSlotSummary();
+        }
+
+        function isSlotPast(dateString, timeString) {
+            const slotDate = new Date(`${dateString}T${timeString}:00`);
+            return Number.isNaN(slotDate.getTime()) || slotDate.getTime() <= Date.now();
+        }
+
+        function createSlotButton(slot, session) {
+            const past = isSlotPast(selectedDate, slot.value);
+            const active = selectedSlot && selectedSlot.date === selectedDate && selectedSlot.time === slot.value;
+            const disabled = past;
+            return `<button type="button" ${disabled ? 'disabled aria-disabled="true"' : `aria-pressed="${Boolean(active)}" onclick="selectSlot('${slot.value}')"`} class="min-h-[43px] rounded-xl border px-2 py-2 text-xs sm:text-sm font-semibold transition ${disabled ? 'bg-slate-100 text-slate-400 border-slate-200 line-through cursor-not-allowed' : active ? 'bg-maroon text-cream border-gold shadow-md' : 'bg-cream/60 text-maroon border-maroon/15 hover:border-gold hover:bg-gold/15'}" aria-label="${escapeHtml(session)} ${escapeHtml(slot.label)}${past ? ', unavailable because the time has passed' : ''}">${escapeHtml(slot.label)}</button>`;
+        }
+
+        function renderSlotGrids() {
+            const morning = document.getElementById('morning-slot-grid');
+            const evening = document.getElementById('evening-slot-grid');
+            const breaks = document.getElementById('break-slot-grid');
+            if (morning) morning.innerHTML = MORNING_SLOTS.map(slot => createSlotButton(slot, 'Morning')).join('');
+            if (evening) evening.innerHTML = EVENING_SLOTS.map(slot => createSlotButton(slot, 'Evening')).join('');
+            if (breaks) breaks.innerHTML = BREAK_SLOTS.map(label => `<button type="button" disabled aria-disabled="true" class="min-h-[40px] rounded-xl border border-maroon/10 bg-cream/60 px-2 py-2 text-xs font-semibold text-maroon/40 line-through cursor-not-allowed">${label}</button>`).join('');
+        }
+
+        function renderHeroQuickSlots() {
+            const container = document.getElementById('hero-quick-slots');
+            if (!container) return;
+            const quickSlots = [MORNING_SLOTS[0], MORNING_SLOTS[4], EVENING_SLOTS[0], EVENING_SLOTS[4]];
+            container.innerHTML = quickSlots.map((slot, index) => {
+                const session = index < 2 ? 'Morning' : 'Evening';
+                const past = isSlotPast(localISODate(new Date()), slot.value);
+                return `<button type="button" ${past ? 'disabled' : `onclick="selectQuickSlot('${slot.value}')"`} class="min-h-[46px] rounded-xl border px-2.5 py-2 text-xs font-bold transition ${past ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-cream text-maroon border-maroon/15 hover:border-gold hover:bg-gold/15'}">
+                    <span class="block text-[10px] uppercase tracking-wide opacity-70">${session}</span>
+                    <span>${slot.label}</span>
+                </button>`;
+            }).join('');
+            const badge = document.getElementById('hero-open-badge');
+            if (badge) badge.textContent = `${quickSlots.filter(slot => !isSlotPast(localISODate(new Date()), slot.value)).length} Quick Windows`;
+        }
+
+        function selectQuickSlot(time) {
+            selectedDate = localISODate(new Date());
+            selectDate(selectedDate);
+            selectSlot(time);
+            document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function selectSlot(time) {
+            if (isSlotPast(selectedDate, time)) {
+                showToast('That time has passed. Please choose a future request window.');
+                return;
+            }
+            const slot = [...MORNING_SLOTS, ...EVENING_SLOTS].find(item => item.value === time);
+            if (!slot) return;
+            selectedSlot = { date: selectedDate, time, label: slot.label };
+            renderSlotGrids();
+            updateSlotSummary();
+            showToast(`${formatDate(selectedDate, { day: 'numeric', month: 'short' })} at ${slot.label} selected.`);
+        }
+
+        function updateSlotSummary() {
+            const summary = document.getElementById('summary-datetime');
+            if (!summary) return;
+            summary.textContent = selectedSlot
+                ? `${formatDate(selectedSlot.date)} · ${selectedSlot.label}`
+                : 'Select a slot';
+        }
+
+        function presetCondition(condition) {
+            const select = document.getElementById('patient-condition');
+            if (select) select.value = condition;
+            document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const name = document.getElementById('patient-name')?.value.trim() || '';
+            const phone = document.getElementById('patient-phone')?.value.trim() || '';
+            const condition = document.getElementById('patient-condition')?.value || '';
+
+            if (!selectedSlot) {
+                showToast('Please choose a consultation date and time first.');
+                document.getElementById('date-selector')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (isSlotPast(selectedSlot.date, selectedSlot.time)) {
+                selectedSlot = null;
+                updateSlotSummary();
+                renderSlotGrids();
+                showToast('That request window has now passed. Please choose another time.');
+                return;
+            }
+            if (name.length < 2) {
+                document.getElementById('patient-name')?.setCustomValidity('Enter your name (at least 2 characters).');
+                document.getElementById('patient-name')?.reportValidity();
+                return;
+            }
+            document.getElementById('patient-name')?.setCustomValidity('');
+            if (!form.reportValidity()) return;
+            if (!/^[6-9]\d{9}$/.test(phone)) {
+                document.getElementById('patient-phone')?.setCustomValidity('Enter a valid 10-digit Indian mobile number.');
+                document.getElementById('patient-phone')?.reportValidity();
+                return;
+            }
+            document.getElementById('patient-phone')?.setCustomValidity('');
+
+            const request = {
+                id: makeRequestId(),
+                date: selectedSlot.date,
+                time: selectedSlot.time,
+                timeLabel: selectedSlot.label,
+                createdAt: new Date().toISOString(),
+                status: 'Not sent yet'
+            };
+            const requests = safeReadRequests();
+            requests.unshift(request);
+            const saved = safeSaveRequests(requests.slice(0, 30));
+
+            const message = [
+                'Namaste Basta Piles Clinic, I would like to request a consultation slot.',
+                `Name: ${name}`,
+                `Phone: ${phone}`,
+                `Condition / reason: ${condition}`,
+                `Requested date: ${formatDate(request.date)}`,
+                `Requested time: ${request.timeLabel}`,
+                `Request reference: ${request.id}`,
+                'Please confirm whether this slot is available.'
+            ].join('\n');
+            const whatsappUrl = `https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(message)}`;
+
+            const body = document.getElementById('token-modal-body');
+            if (body) {
+                body.innerHTML = `<div class="rounded-2xl bg-cream p-4 border border-maroon/10">
+                    <p class="text-xs font-semibold text-maroon/65">REQUEST REFERENCE</p>
+                    <p class="text-lg font-extrabold text-maroon mt-1">${escapeHtml(request.id)}</p>
+                    <p class="text-sm text-maroon mt-2"><strong>Date:</strong> ${escapeHtml(formatDate(request.date))}</p>
+                    <p class="text-sm text-maroon"><strong>Time:</strong> ${escapeHtml(request.timeLabel)}</p>
+                    
+                </div>
+                <div class="text-sm text-maroon/80 leading-relaxed">
+                    <p class="font-bold text-maroon">Next step</p>
+                    <p>WhatsApp will open with your request filled in. Review it and tap <strong>Send</strong>. This is a request only—not a confirmed appointment. The clinic must reply to confirm availability.</p>
+                    ${saved ? '<p class="mt-2 text-xs">The request reference and slot details have been saved on this device. Your name, phone number and health details are not stored in this website’s local request history.</p>' : '<p class="mt-2 text-xs">This browser could not save the local request history. You can still continue to WhatsApp.</p>'}
+                </div>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="min-h-[46px] w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold flex items-center justify-center gap-2 transition" onclick="markRequestWhatsAppOpened('${request.id}'); closeModal('token-modal')"><i class="fa-brands fa-whatsapp"></i> Open WhatsApp Request</a>`;
+            }
+            updateSavedRequestCount();
+            openModal('token-modal');
+            // Do not auto-send any message. The visitor reviews and sends it in WhatsApp.
+        }
+
+        function markRequestWhatsAppOpened(id) {
+            const requests = safeReadRequests();
+            const request = requests.find(item => item.id === id);
+            if (request) {
+                request.status = 'WhatsApp draft opened – send in WhatsApp';
+                safeSaveRequests(requests);
+                updateSavedRequestCount();
+            }
+        }
+
+        // ---------------- Saved request history ----------------
+        function updateSavedRequestCount() {
+            const count = safeReadRequests().length;
+            const node = document.getElementById('top-pass-count');
+            if (node) node.textContent = String(count);
+        }
+
+        function openMyBookingsModal() {
+            const container = document.getElementById('my-bookings-list');
+            if (!container) return;
+            const requests = safeReadRequests().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            if (!requests.length) {
+                container.innerHTML = `<div class="text-center py-8">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-maroon/10 text-maroon flex items-center justify-center text-xl"><i class="fa-regular fa-calendar-xmark"></i></div>
+                    <p class="font-bold text-maroon mt-3">No saved requests yet</p>
+                    <p class="text-xs text-maroon/65 mt-1">Your appointment request references will appear here after you submit a request.</p>
+                    <a href="#booking" onclick="closeModal('my-bookings-modal')" class="inline-flex mt-4 px-4 py-2 rounded-xl bg-maroon text-cream text-xs font-bold">Request a Slot</a>
+                </div>`;
+            } else {
+                container.innerHTML = requests.map(item => `
+                    <article class="bg-white border border-gold/40 rounded-2xl p-4 shadow-sm">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="min-w-0">
+                                <p class="text-[10px] uppercase tracking-wider font-bold text-gold-dark">${escapeHtml(item.id)}</p>
+                                <p class="font-bold text-maroon text-sm mt-1">${escapeHtml(formatDate(item.date))}</p>
+                                <p class="text-xs text-maroon/75 mt-0.5">${escapeHtml(item.timeLabel || item.time || '')} · Consultation request</p>
+                            </div>
+                            <span class="shrink-0 text-[10px] rounded-full px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 font-bold">${escapeHtml(item.status || 'Not sent yet')}</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-maroon/10">
+                            <span class="text-[10px] text-maroon/55">Saved on this device</span>
+                            <button type="button" data-remove-request="${escapeHtml(item.id)}" class="text-xs font-semibold text-maroon/70 underline hover:text-maroon">Remove</button>
+                        </div>
+                    </article>`).join('');
+            }
+            container.querySelectorAll('[data-remove-request]').forEach(button => {
+                button.addEventListener('click', () => removeSavedRequest(button.dataset.removeRequest || ''));
+            });
+            openModal('my-bookings-modal');
+        }
+
+        function removeSavedRequest(id) {
+            const updated = safeReadRequests().filter(item => item.id !== id);
+            safeSaveRequests(updated);
+            updateSavedRequestCount();
+            openMyBookingsModal();
+            showToast('Saved request removed from this device.');
+        }
+
+        // ---------------- Modals ----------------
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+            if (!document.querySelector('#token-modal:not(.hidden), #my-bookings-modal:not(.hidden)')) {
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // ---------------- Local clinic information assistant ----------------
+        function appendAssistantMessage(message, sender = 'assistant') {
+            const feed = document.getElementById('assistant-messages');
+            if (!feed) return;
+            const wrapper = document.createElement('div');
+            wrapper.className = sender === 'user' ? 'flex justify-end' : 'flex justify-start';
+            const bubble = document.createElement('div');
+            bubble.className = sender === 'user'
+                ? 'max-w-[88%] rounded-2xl rounded-br-md bg-maroon text-cream px-3.5 py-2.5 text-xs leading-relaxed shadow-sm whitespace-pre-line'
+                : 'max-w-[92%] rounded-2xl rounded-bl-md bg-white border border-maroon/10 text-maroon px-3.5 py-2.5 text-xs leading-relaxed shadow-sm whitespace-pre-line';
+            bubble.textContent = message;
+            wrapper.appendChild(bubble);
+            feed.appendChild(wrapper);
+            feed.scrollTop = feed.scrollHeight;
+        }
+
+        function toggleAssistant(forceOpen, initialPrompt) {
+            const panel = document.getElementById('assistant-panel');
+            if (!panel) return;
+            const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : panel.classList.contains('hidden');
+            panel.classList.toggle('hidden', !shouldOpen);
+            if (shouldOpen) {
+                if (!assistantInitialized) {
+                    appendAssistantMessage('Namaste! I can help with clinic timings, address, booking request windows and general website information. I cannot diagnose symptoms or confirm appointment availability.', 'assistant');
+                    assistantInitialized = true;
+                }
+                if (initialPrompt) sendAssistantMessage(initialPrompt);
+                document.getElementById('assistant-input')?.focus();
+            }
+        }
+
+        function getAssistantReply(rawMessage) {
+            const message = rawMessage.toLowerCase();
+            if (/slot|availability|available|book|appointment|today/.test(message)) {
+                return `The website offers request windows from 8:00 AM–2:00 PM and 4:00 PM–8:00 PM. The 2:00 PM–4:00 PM break is closed. These are request windows, not live availability; the clinic must confirm your chosen slot. Use “Book Slot” to send a request.`;
+            }
+            if (/time|timing|hour|open|close|address|direction|where|map|location/.test(message)) {
+                return `Clinic hours: ${CLINIC.hours}, all seven days as listed on this website.\nAddress: ${CLINIC.address}\nPhone / WhatsApp: +91 90931 33416. Please contact the clinic before travelling to verify details.`;
+            }
+            if (/surgery|operation|cut|stitch/.test(message)) {
+                return 'Whether a procedure or surgery is needed depends on the actual diagnosis, severity and clinical examination. This website cannot promise that surgery will never be required. Please discuss suitable options, benefits and risks directly with a qualified clinician.';
+            }
+            if (/guarantee|money.?back|refund/.test(message)) {
+                return 'No complete guarantee policy, eligibility criteria or refund conditions are published in the information available here. Ask the clinic for any guarantee and refund terms in writing before beginning treatment.';
+            }
+            if (/fee|price|cost|charge/.test(message)) {
+                return 'Consultation and treatment fees are not listed here. Please ask the clinic directly on WhatsApp at +91 90931 33416.';
+            }
+            if (/bleed|blood|pain|piles|fissure|fistula|symptom|itch|lump|swelling|discharge/.test(message)) {
+                return 'I cannot identify the cause of symptoms through chat. Rectal bleeding, pain, swelling or discharge should be assessed by a qualified healthcare professional. Seek urgent medical help for heavy bleeding, black/tarry stools, fainting or dizziness, fever, or severe/worsening pain.';
+            }
+            return 'I can help with booking request windows, clinic hours, the address, contact details and general website information. For diagnosis, treatment advice, fees or written guarantee terms, please speak directly with the clinic and a qualified healthcare professional.';
+        }
+
+        function sendAssistantMessage(message) {
+            const clean = String(message || '').trim();
+            if (!clean) return;
+            toggleAssistant(true);
+            appendAssistantMessage(clean, 'user');
+            appendAssistantMessage(getAssistantReply(clean), 'assistant');
+            const input = document.getElementById('assistant-input');
+            if (input) input.value = '';
+        }
+
+        function handleAssistantSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('assistant-input');
+            sendAssistantMessage(input?.value || '');
+        }
+
+        function sendQuickPrompt(prompt) {
+            sendAssistantMessage(prompt);
+            if (/slot|today/i.test(prompt)) {
+                window.setTimeout(() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            }
+        }
+
+        // ---------------- Three-step symptom and diet guide ----------------
+        const symptomQuestions = {
+            1: {
+                key: 'symptom',
+                title: '1. What are you experiencing?',
+                options: [
+                    ['bleeding', 'Bleeding during or after bowel movements'],
+                    ['pain', 'Pain or discomfort'],
+                    ['lump', 'A lump or swelling'],
+                    ['discharge', 'Discharge or persistent irritation'],
+                    ['other', 'Other symptoms / not sure']
+                ]
+            },
+            2: {
+                key: 'duration',
+                title: '2. How long has this been happening?',
+                options: [
+                    ['recent', 'Less than one week'],
+                    ['weeks', 'Around 1–4 weeks'],
+                    ['long', 'More than four weeks'],
+                    ['recurring', 'It keeps returning']
+                ]
+            },
+            3: {
+                key: 'diet',
+                title: '3. Which best describes your usual diet?',
+                options: [
+                    ['low_fibre', 'I often eat low-fibre foods'],
+                    ['low_water', 'I may not drink enough water'],
+                    ['balanced', 'I usually eat fibre-rich foods and drink water'],
+                    ['unsure', 'I am not sure']
+                ]
+            }
+        };
+
+        function renderSymptomStep(step) {
+            symptomStep = Math.min(3, Math.max(1, Number(step) || 1));
+            symptomComplete = false;
+            const badge = document.getElementById('symptom-step-badge');
+            const body = document.getElementById('symptom-wizard-body');
+            if (!body) return;
+            if (badge) badge.textContent = `Step ${symptomStep} of 3`;
+            const question = symptomQuestions[symptomStep];
+            const selected = symptomAnswers[question.key];
+            body.innerHTML = `<div class="space-y-4">
+                <h3 class="font-bold text-maroon text-sm sm:text-base">${question.title}</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    ${question.options.map(([value, label]) => `<label class="flex items-center gap-3 min-h-[48px] rounded-xl border ${selected === value ? 'border-gold bg-gold/10' : 'border-maroon/10 bg-cream/50'} px-3.5 py-3 cursor-pointer hover:border-gold transition">
+                        <input type="radio" name="symptom-answer" value="${value}" ${selected === value ? 'checked' : ''} onchange="selectSymptomAnswer('${question.key}', '${value}')" class="h-4 w-4 accent-[#800000]">
+                        <span class="text-xs sm:text-sm font-medium text-maroon">${escapeHtml(label)}</span>
+                    </label>`).join('')}
+                </div>
+                <div class="flex items-center justify-between gap-3 pt-2">
+                    <button type="button" ${symptomStep === 1 ? 'disabled' : 'onclick="renderSymptomStep(symptomStep - 1)"'} class="min-h-[42px] px-4 py-2 rounded-xl border border-maroon/20 text-maroon text-xs font-bold ${symptomStep === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-cream'}">Back</button>
+                    <button type="button" onclick="nextSymptomStep()" class="min-h-[42px] px-5 py-2 rounded-xl bg-maroon text-cream text-xs font-bold hover:bg-maroon-dark transition">${symptomStep === 3 ? 'View Guidance' : 'Continue'} <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                </div>
+                <p class="text-[10px] text-maroon/55 leading-relaxed">This private guide is informational only. It does not diagnose a condition or replace an in-person medical assessment.</p>
+            </div>`;
+        }
+
+        function selectSymptomAnswer(key, value) {
+            if (Object.prototype.hasOwnProperty.call(symptomAnswers, key)) symptomAnswers[key] = value;
+            // Refresh selection styling without moving the user to another step.
+            const labels = document.querySelectorAll('#symptom-wizard-body label');
+            labels.forEach(label => {
+                const input = label.querySelector('input');
+                if (!input) return;
+                label.classList.toggle('border-gold', input.checked);
+                label.classList.toggle('bg-gold/10', input.checked);
+                label.classList.toggle('border-maroon/10', !input.checked);
+                label.classList.toggle('bg-cream/50', !input.checked);
+            });
+        }
+
+        function nextSymptomStep() {
+            const question = symptomQuestions[symptomStep];
+            if (!symptomAnswers[question.key]) {
+                showToast('Please choose an option to continue.');
+                return;
+            }
+            if (symptomStep < 3) renderSymptomStep(symptomStep + 1);
+            else renderSymptomResult();
+        }
+
+        function renderSymptomResult() {
+            symptomComplete = true;
+            const badge = document.getElementById('symptom-step-badge');
+            const body = document.getElementById('symptom-wizard-body');
+            if (badge) badge.textContent = 'Guidance';
+            if (!body) return;
+            const symptoms = symptomQuestions[1].options.find(item => item[0] === symptomAnswers.symptom)?.[1] || 'Not specified';
+            const duration = symptomQuestions[2].options.find(item => item[0] === symptomAnswers.duration)?.[1] || 'Not specified';
+            let dietTip = 'Aim for a balanced diet with fibre-containing foods, adequate fluids, and regular meals. Increase fibre gradually and follow any dietary advice from your clinician.';
+            if (symptomAnswers.diet === 'low_fibre') dietTip = 'Consider gradually adding fibre-rich foods such as vegetables, fruits, pulses and whole grains. Increase fibre gradually and drink adequate fluids, unless a clinician has advised fluid restriction.';
+            if (symptomAnswers.diet === 'low_water') dietTip = 'Drink fluids regularly through the day, unless a clinician has advised you to restrict fluids. Fibre works best when your fluid intake is adequate.';
+            if (symptomAnswers.diet === 'balanced') dietTip = 'Continue your balanced, fibre-containing diet and regular fluid intake. Avoid straining and prolonged sitting on the toilet.';
+            body.innerHTML = `<div class="space-y-4">
+                <div class="rounded-2xl bg-cream p-4 border border-maroon/10">
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-gold-dark">Your responses</span>
+                    <p class="text-sm text-maroon mt-2"><strong>Symptom:</strong> ${escapeHtml(symptoms)}</p>
+                    <p class="text-sm text-maroon mt-1"><strong>Duration:</strong> ${escapeHtml(duration)}</p>
+                </div>
+                <div class="rounded-2xl border border-gold/50 p-4">
+                    <h3 class="font-bold text-maroon text-sm"><i class="fa-solid fa-utensils text-gold-dark mr-1.5"></i>General diet guidance</h3>
+                    <p class="text-xs text-maroon/80 leading-relaxed mt-2">${escapeHtml(dietTip)}</p>
+                </div>
+                <div class="rounded-2xl bg-amber-50 border border-amber-200 p-4">
+                    <h3 class="font-bold text-amber-900 text-sm"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i>When to seek medical care</h3>
+                    <p class="text-xs text-amber-900/90 leading-relaxed mt-2">Arrange an assessment by a qualified healthcare professional for bleeding, pain, swelling or discharge. Seek urgent medical help for heavy bleeding, black/tarry stools, fainting or dizziness, fever, or severe/worsening pain.</p>
+                </div>
+                <p class="text-[11px] text-maroon/65 leading-relaxed">These answers cannot determine whether you have piles, a fissure, a fistula or another condition. A clinical examination may be needed.</p>
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                    <button type="button" onclick="resetSymptomGuide()" class="min-h-[42px] px-4 py-2 rounded-xl border border-maroon/20 text-maroon text-xs font-bold hover:bg-cream">Start Again</button>
+                    <a href="#booking" class="min-h-[42px] px-4 py-2 rounded-xl bg-maroon text-cream text-xs font-bold inline-flex items-center">Request Consultation</a>
+                </div>
+            </div>`;
+        }
+
+        function resetSymptomGuide() {
+            symptomAnswers.symptom = '';
+            symptomAnswers.duration = '';
+            symptomAnswers.diet = '';
+            renderSymptomStep(1);
+        }
+
+        // ---------------- Progressive web app installation ----------------
+        function setupOneTapInstall() {
+            window.addEventListener('beforeinstallprompt', event => {
+                event.preventDefault();
+                deferredInstallPrompt = event;
+            });
+            window.addEventListener('appinstalled', () => {
+                deferredInstallPrompt = null;
+                showToast('Basta Piles Clinic added to your Home Screen.');
+            });
+
+            const isSecureContext = window.isSecureContext || ['localhost', '127.0.0.1'].includes(window.location.hostname);
+            if ('serviceWorker' in navigator && isSecureContext && window.location.protocol !== 'file:') {
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                    .catch(error => console.warn('Service worker registration failed:', error));
+            }
+        }
+
+        async function triggerOneTapInstall() {
+            if (deferredInstallPrompt) {
+                try {
+                    deferredInstallPrompt.prompt();
+                    const choice = await deferredInstallPrompt.userChoice;
+                    if (choice?.outcome === 'accepted') deferredInstallPrompt = null;
+                    else showToast('Installation was not completed. You can try again from this button.');
+                } catch (error) {
+                    console.warn('Install prompt failed:', error);
+                    showToast('Use your browser menu and choose Install app or Add to Home Screen.');
+                }
+                return;
+            }
+            const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            if (isIOS) {
+                showToast('In Safari, tap Share, then choose Add to Home Screen.');
+            } else if (window.location.protocol === 'file:') {
+                showToast('To install the app, first open the website from its HTTPS address.');
+            } else {
+                showToast('Open your browser menu (⋮) and choose Install app or Add to Home Screen.');
+            }
+        }
+
+        // ---------------- Startup and accessibility ----------------
+        window.addEventListener('DOMContentLoaded', () => {
+            const year = document.getElementById('current-year');
+            if (year) year.textContent = String(new Date().getFullYear());
+            setupOneTapInstall();
+            renderAll();
+            renderSymptomStep(1);
+
+            // Clear stale custom validation messages while the user edits the phone field.
+            const phoneInput = document.getElementById('patient-phone');
+            phoneInput?.addEventListener('input', () => phoneInput.setCustomValidity(''));
+            const nameInput = document.getElementById('patient-name');
+            nameInput?.addEventListener('input', () => nameInput.setCustomValidity(''));
+
+            // Close modal when its backdrop is clicked; keep clicks inside the dialog intact.
+            ['token-modal', 'my-bookings-modal'].forEach(id => {
+                const modal = document.getElementById(id);
+                modal?.addEventListener('click', event => {
+                    if (event.target === modal) closeModal(id);
+                });
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    closeModal('token-modal');
+                    closeModal('my-bookings-modal');
+                    toggleAssistant(false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
