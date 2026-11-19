@@ -1,4 +1,4 @@
-Basta Piles Clinic
+# Basta Piles Clinic
 
 Official web application for Basta Piles Clinic in Basta, Odisha—providing consultation slot requests, clinic hours and location details, a confidential 3-step symptom and diet guide, an interactive clinic assistant, and WhatsApp booking support.
 
